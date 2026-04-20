@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karunakaresh Wara Sarma | AI Engineer & Security Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-secondary: #FFF;
+            --bg-dark: #2A2A2A;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-muted: #6A6A6A;
+            --accent-primary: #D47449;
+            --accent-secondary: #5B9A8B;
+            --border-color: #E5E0D8;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #C26238;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-container {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: morph 8s ease-in-out infinite;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+            25% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 70% 30% 50% 50% / 30% 60% 70% 40%; }
+            75% { border-radius: 50% 50% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        .avatar-initials {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            font-weight: 700;
+            color: white;
+            user-select: none;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .strengths {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .strength-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-primary);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .strength-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .strength-card h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .strength-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-card.featured {
+            border: 2px solid var(--accent-primary);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            padding: 2.5rem 2rem;
+            color: white;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .project-date {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-primary);
+            color: var(--accent-primary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .project-link-primary:hover {
+            background: #C26238;
+        }
+
+        .project-link-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid var(--border-color);
+        }
+
+        .project-link-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 4px var(--border-color);
+        }
+
+        .timeline-content {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline-title h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .timeline-company {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .timeline-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-description li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.7rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .timeline-description li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .education-degree {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .education-institution {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .education-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+        .education-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Research Section */
+        .research-content {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .research-intro {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .research-interests {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-area {
+            padding: 2rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .research-area:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .research-area h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-secondary);
+        }
+
+        .research-area p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cert-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .cert-issuer {
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .contact .section-title,
+        .contact .section-subtitle {
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-card a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1A1A1A;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .avatar-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .avatar-initials {
+                font-size: 4rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2rem;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">KWS</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Karunakaresh Wara Sarma</h1>
+                    <p class="hero-tagline">AI Engineer • Security Researcher • ML Enthusiast</p>
+                    <p class="hero-description">
+                        Computer Science professional specializing in network security, machine learning, and applied cryptography. Building intelligent systems at the intersection of AI and cybersecurity.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="avatar-container">
+                        <div class="avatar-initials">KS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Building secure, intelligent systems</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a Computer Science professional with a Master's degree from Manonmaniam Sundaranar University, India. My work sits at the intersection of network security, machine learning, and applied cryptography. I thrive on solving complex problems that demand both rigorous theoretical foundations and practical engineering solutions.
+                    </p>
+                    <p>
+                        My portfolio spans diverse projects—from encrypted DNS traffic analyzers and secure file-sharing platforms to deep learning models for activity recognition. I'm equally proficient in low-level network simulations using NS-3 and GNS3 as I am in building and training sophisticated models with TensorFlow and PyTorch.
+                    </p>
+                    <p>
+                        Currently seeking opportunities in software engineering, security engineering, and applied machine learning, as well as research collaborations in cryptographic protocols, IoT security, and next-generation distributed systems.
+                    </p>
+                </div>
+                <div class="strengths">
+                    <div class="strength-card">
+                        <h4>🔒 Security-First Mindset</h4>
+                        <p>Deep expertise in cryptography, network security, and threat analysis</p>
+                    </div>
+                    <div class="strength-card">
+                        <h4>🤖 AI & ML Proficiency</h4>
+                        <p>Advanced capabilities in deep learning, computer vision, and model optimization</p>
+                    </div>
+                    <div class="strength-card">
+                        <h4>🛠️ Full-Stack Engineering</h4>
+                        <p>End-to-end development from network protocols to user interfaces</p>
+                    </div>
+                    <div class="strength-card">
+                        <h4>📚 Research-Oriented</h4>
+                        <p>Strong foundation in academic research and experimental analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Tools and technologies I work with</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">Scikit-Learn</span>
+                        <span class="skill-tag">Computer Vision</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Security & Networking</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Cryptography</span>
+                        <span class="skill-tag">NS-3</span>
+                        <span class="skill-tag">GNS3</span>
+                        <span class="skill-tag">Network Security</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Data Science & Analytics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">SciPy</span>
+                        <span class="skill-tag">Power BI</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Web & Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">BeautifulSoup</span>
+                        <span class="skill-tag">Selenium</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Emerging Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Quantum Computing</span>
+                        <span class="skill-tag">Cloud AI (Oracle)</span>
+                        <span class="skill-tag">Oracle APEX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Innovative solutions in AI, security, and data science</p>
+            </div>
+            <div class="projects-grid">
+                <!-- Featured Project -->
+                <div class="project-card featured fade-in">
+                    <div class="project-header">
+                        <span class="project-badge">🌟 Featured Project</span>
+                        <h3>Encrypted DNS Traffic Analyzer</h3>
+                        <p class="project-date">February 2026 - April 2026</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Developed an advanced machine learning system to analyze and classify encrypted DNS traffic for detecting malicious network activities. Implemented comprehensive data preprocessing pipelines, sophisticated feature extraction techniques, and rigorous model evaluation on real-world network traffic datasets. The system achieves high accuracy in identifying anomalous patterns while maintaining low false-positive rates.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Network Security</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3>Secure File Sharing System</h3>
+                        <p class="project-date">October 2025 - December 2025</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Architected and implemented a robust file-sharing platform with enterprise-grade encryption and authentication mechanisms to ensure data confidentiality and integrity. Features include granular user access control, AES-256 file encryption/decryption, secure data transmission protocols, and comprehensive audit logging for compliance requirements.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Cryptography</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Cybersecurity</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3>Deep Learning for Temporal Activity Recognition</h3>
+                        <p class="project-date">February 2024 - May 2024</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Designed and trained CNN-LSTM hybrid neural network architectures for temporal activity recognition in sequential data. Performed extensive data preprocessing, feature engineering, hyperparameter tuning, and comprehensive model evaluation. Achieved state-of-the-art performance on benchmark datasets through careful architecture design and optimization strategies.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Deep Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3>Web Scraping for Large-Scale Data Analysis</h3>
+                        <p class="project-date">December 2021 - March 2022</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Built a scalable Python-based web scraping system for automated large-scale data collection and trend analysis. Engineered robust extraction pipelines using BeautifulSoup and Selenium, implementing intelligent retry mechanisms, rate limiting, and data validation to ensure data quality and reliability for downstream analytics.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">BeautifulSoup</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Data Engineering</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">Career journey and contributions</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Computer Science Lab Support</h3>
+                                <p class="timeline-company">Manonmaniam Sundaranar University, Tirunelveli</p>
+                            </div>
+                            <span class="timeline-date">July 2024 - Present</span>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Provide comprehensive technical support for hardware and software troubleshooting across university computing facilities</li>
+                                <li>Monitor lab operations and enforce institutional guidelines to maintain secure and productive learning environments</li>
+                                <li>Mentor students in programming concepts, software development tools, and best practices</li>
+                                <li>Manage equipment inventory, scheduling systems, and technical documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Cybersecurity Intern</h3>
+                                <p class="timeline-company">Skillvertex, Tirunelveli</p>
+                            </div>
+                            <span class="timeline-date">March 2023 - May 2023</span>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Gained hands-on experience in network security protocols, cryptographic implementations, and threat analysis methodologies</li>
+                                <li>Completed multiple projects focused on cybersecurity principles and vulnerability assessment</li>
+                                <li>Applied analytical problem-solving skills to real-world security scenarios and incident response simulations</li>
+                                <li>Developed proficiency in security tools and frameworks through practical exercises</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">Academic foundation and qualifications</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Master of Science in Computer Science</h3>
+                    <p class="education-institution">Manonmaniam Sundaranar University</p>
+                    <div class="education-details">
+                        <span class="education-detail">📍 Tirunelveli, India</span>
+                        <span class="education-detail">📅 July 2022 - April 2024</span>
+                    </div>
+                </div>
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Bachelor of Computer Application</h3>
+                    <p class="education-institution">Manonmaniam Sundaranar University</p>
+                    <div class="education-details">
+                        <span class="education-detail">📍 Tirunelveli, India</span>
+                        <span class="education-detail">📅 July 2019 - May 2022</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Research & Academic Interests</h2>
+                <p class="section-subtitle">Exploring the frontiers of AI and security</p>
+            </div>
+            <div class="research-content">
+                <p class="research-intro">
+                    My research focuses on advancing intelligent systems through rigorous academic inquiry and practical experimentation. I conduct comprehensive literature reviews in deep learning-based activity recognition and multimodal learning, while implementing and evaluating state-of-the-art neural network architectures for sequence-based data analysis.
+                </p>
+                <div class="research-interests">
+                    <div class="research-area fade-in">
+                        <h4>Deep Learning & Computer Vision</h4>
+                        <p>Investigating advanced neural architectures for temporal pattern recognition, multimodal data fusion, and real-time activity classification in complex environments.</p>
+                    </div>
+                    <div class="research-area fade-in">
+                        <h4>Cryptographic Protocols</h4>
+                        <p>Exploring next-generation encryption schemes, secure communication protocols, and privacy-preserving technologies for distributed systems and IoT ecosystems.</p>
+                    </div>
+                    <div class="research-area fade-in">
+                        <h4>Quantum Computing</h4>
+                        <p>Studying quantum algorithms, qubit manipulation, quantum states, and the implications of quantum computing for cryptography and optimization problems.</p>
+                    </div>
+                    <div class="research-area fade-in">
+                        <h4>Network Security & IoT</h4>
+                        <p>Researching threat detection mechanisms, intrusion prevention systems, and security frameworks for Internet of Things devices and edge computing infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <p class="section-subtitle">Continuous learning and professional development</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card fade-in">
+                    <h4 class="cert-title">Basic Information of Quantum Computing</h4>
+                    <p class="cert-issuer">IBM</p>
+                    <p class="cert-date">May 2025</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <h4 class="cert-title">Oracle Cloud Infrastructure 2024 AI Foundations</h4>
+                    <p class="cert-issuer">Oracle</p>
+                    <p class="cert-date">December 2024</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <h4 class="cert-title">Introduction to Artificial Intelligence</h4>
+                    <p class="cert-issuer">Simplilearn</p>
+                    <p class="cert-date">February 2025</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <h4 class="cert-title">Oracle APEX Certificate of Excellence</h4>
+                    <p class="cert-issuer">INOAUG</p>
+                    <p class="cert-date">November 2022</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Open to opportunities and collaborations</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:haransarma02@gmail.com">haransarma02@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:+919025507963">+91 90255 07963</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/karunakaresh-wara-sarma-s-69a3041bb/" target="_blank">Connect on LinkedIn</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h3>Website</h3>
+                    <a href="https://sarmaharan.github.io/" target="_blank">sarmaharan.github.io</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Karunakaresh Wara Sarma. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/sarmaharan" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/karunakaresh-wara-sarma-s-69a3041bb/" target="_blank">LinkedIn</a>
+                    <a href="mailto:haransarma02@gmail.com">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
