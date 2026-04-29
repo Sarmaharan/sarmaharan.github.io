@@ -405,6 +405,15 @@
             background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             padding: 2.5rem 2rem;
             color: white;
+            position: relative;
+        }
+
+        .project-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
         }
 
         .project-badge {
@@ -873,6 +882,73 @@
             }
         }
 
+        /* Open to Work badge */
+        .open-to-work-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #edfaf3;
+            color: #1a7a4a;
+            border: 1px solid #a8e6c4;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+        .otw-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        /* Stats row */
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: left;
+        }
+        .hero-stat-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+        .hero-stat-lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Project metrics */
+        .project-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+        }
+        .project-metric {
+            background: #fff8f5;
+            color: var(--accent-primary);
+            border: 1px solid #f0d5c5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
         /* Scroll animations */
         .fade-in {
             opacity: 0;
@@ -903,6 +979,7 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="https://github.com/sarmaharan" target="_blank" style="color: var(--accent-primary); font-weight: 600;">GitHub ↗</a></li>
             </ul>
         </div>
     </nav>
@@ -912,14 +989,32 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
+                    <div class="open-to-work-badge">
+                        <span class="otw-dot"></span> Open to Work
+                    </div>
                     <h1>Karunakaresh Wara Sarma</h1>
-                    <p class="hero-tagline">AI Engineer • Security Researcher • ML Enthusiast</p>
+                    <p class="hero-tagline">AI Engineer • Security Researcher • ML Engineer</p>
                     <p class="hero-description">
-                        Computer Science professional specializing in network security, machine learning, and applied cryptography. Building intelligent systems at the intersection of AI and cybersecurity.
+                        M.Sc. Computer Science graduate specializing in network security, machine learning, and applied cryptography. I build intelligent systems at the intersection of AI and cybersecurity — from encrypted DNS analyzers to CNN-LSTM activity recognition models.
                     </p>
                     <div class="hero-cta">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
                         <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                        <a href="https://sarmaharan.github.io/" class="btn btn-secondary" style="border-color: var(--accent-secondary); color: var(--accent-secondary);">Download CV</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">4+</div>
+                            <div class="hero-stat-lbl">Projects built</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">3</div>
+                            <div class="hero-stat-lbl">Domains: ML · Security · Data</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">4</div>
+                            <div class="hero-stat-lbl">Certifications</div>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -941,13 +1036,10 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a Computer Science professional with a Master's degree from Manonmaniam Sundaranar University, India. My work sits at the intersection of network security, machine learning, and applied cryptography. I thrive on solving complex problems that demand both rigorous theoretical foundations and practical engineering solutions.
+                        I'm a Computer Science graduate (M.Sc., Manonmaniam Sundaranar University) working at the intersection of network security, machine learning, and applied cryptography. I build things that are both technically rigorous and practically useful — from ML pipelines that classify encrypted DNS traffic to secure file-sharing platforms with AES-256 encryption.
                     </p>
                     <p>
-                        My portfolio spans diverse projects—from encrypted DNS traffic analyzers and secure file-sharing platforms to deep learning models for activity recognition. I'm equally proficient in low-level network simulations using NS-3 and GNS3 as I am in building and training sophisticated models with TensorFlow and PyTorch.
-                    </p>
-                    <p>
-                        Currently seeking opportunities in software engineering, security engineering, and applied machine learning, as well as research collaborations in cryptographic protocols, IoT security, and next-generation distributed systems.
+                        I'm equally comfortable training deep learning models in TensorFlow and PyTorch as I am running low-level network simulations in NS-3 and GNS3. Currently open to opportunities in software engineering, security engineering, and applied ML research.
                     </p>
                 </div>
                 <div class="strengths">
@@ -1020,8 +1112,11 @@
                     <h3>Web & Development</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">REST APIs</span>
                         <span class="skill-tag">BeautifulSoup</span>
                         <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Git</span>
                     </div>
                 </div>
                 <div class="skill-category fade-in">
@@ -1047,13 +1142,18 @@
                 <!-- Featured Project -->
                 <div class="project-card featured fade-in">
                     <div class="project-header">
-                        <span class="project-badge">🌟 Featured Project</span>
+                        <span class="project-badge">&#11088; Featured Project</span>
                         <h3>Encrypted DNS Traffic Analyzer</h3>
-                        <p class="project-date">February 2026 - April 2026</p>
+                        <p class="project-date">February 2026 – April 2026</p>
                     </div>
                     <div class="project-content">
+                        <div class="project-metrics">
+                            <span class="project-metric">ML Classification</span>
+                            <span class="project-metric">Anomaly Detection</span>
+                            <span class="project-metric">Feature Engineering</span>
+                        </div>
                         <p class="project-description">
-                            Developed an advanced machine learning system to analyze and classify encrypted DNS traffic for detecting malicious network activities. Implemented comprehensive data preprocessing pipelines, sophisticated feature extraction techniques, and rigorous model evaluation on real-world network traffic datasets. The system achieves high accuracy in identifying anomalous patterns while maintaining low false-positive rates.
+                            Built an ML pipeline to classify encrypted DNS traffic and detect malicious network activity. Engineered features from raw packet captures, applied preprocessing on network traffic datasets, and evaluated multiple classifiers (Random Forest, SVM) for anomaly detection with low false-positive rates.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -1064,7 +1164,7 @@
                             <span class="tech-tag">Machine Learning</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                            <a href="https://github.com/Sarmaharan/Encrypted-DNS-Traffic-Analyzer" target="_blank" class="project-link project-link-primary">View on GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -1073,11 +1173,16 @@
                 <div class="project-card fade-in">
                     <div class="project-header">
                         <h3>Secure File Sharing System</h3>
-                        <p class="project-date">October 2025 - December 2025</p>
+                        <p class="project-date">October 2025 – December 2025</p>
                     </div>
                     <div class="project-content">
+                        <div class="project-metrics">
+                            <span class="project-metric">AES-256 Encryption</span>
+                            <span class="project-metric">Role-Based Access</span>
+                            <span class="project-metric">REST API</span>
+                        </div>
                         <p class="project-description">
-                            Architected and implemented a robust file-sharing platform with enterprise-grade encryption and authentication mechanisms to ensure data confidentiality and integrity. Features include granular user access control, AES-256 file encryption/decryption, secure data transmission protocols, and comprehensive audit logging for compliance requirements.
+                            Built a full-stack secure file-sharing platform with AES-256 encryption, JWT-based authentication, and role-based access control. Implemented end-to-end file encryption/decryption, secure HTTPS transmission, and audit logging. RESTful Flask backend with SQL database supporting multi-user environments.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -1087,7 +1192,7 @@
                             <span class="tech-tag">Cybersecurity</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                            <a href="https://github.com/Sarmaharan/Secure-File-Sharing-System" target="_blank" class="project-link project-link-primary">View on GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -1096,11 +1201,16 @@
                 <div class="project-card fade-in">
                     <div class="project-header">
                         <h3>Deep Learning for Temporal Activity Recognition</h3>
-                        <p class="project-date">February 2024 - May 2024</p>
+                        <p class="project-date">February 2024 – May 2024</p>
                     </div>
                     <div class="project-content">
+                        <div class="project-metrics">
+                            <span class="project-metric">CNN-LSTM Architecture</span>
+                            <span class="project-metric">Sequence Modelling</span>
+                            <span class="project-metric">Hyperparameter Tuning</span>
+                        </div>
                         <p class="project-description">
-                            Designed and trained CNN-LSTM hybrid neural network architectures for temporal activity recognition in sequential data. Performed extensive data preprocessing, feature engineering, hyperparameter tuning, and comprehensive model evaluation. Achieved state-of-the-art performance on benchmark datasets through careful architecture design and optimization strategies.
+                            Designed and trained a CNN-LSTM hybrid neural network for temporal activity recognition on sequential sensor data. Performed data preprocessing, augmentation, and feature extraction; tuned hyperparameters to reduce overfitting. Evaluated across F1-score, precision, and recall metrics against baseline classifiers.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -1111,7 +1221,7 @@
                             <span class="tech-tag">Deep Learning</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                            <a href="https://github.com/sarmaharan" target="_blank" class="project-link project-link-secondary">Repo coming soon</a>
                         </div>
                     </div>
                 </div>
@@ -1120,11 +1230,16 @@
                 <div class="project-card fade-in">
                     <div class="project-header">
                         <h3>Web Scraping for Large-Scale Data Analysis</h3>
-                        <p class="project-date">December 2021 - March 2022</p>
+                        <p class="project-date">December 2021 – March 2022</p>
                     </div>
                     <div class="project-content">
+                        <div class="project-metrics">
+                            <span class="project-metric">Automated Pipelines</span>
+                            <span class="project-metric">Multi-source Collection</span>
+                            <span class="project-metric">Trend Analysis</span>
+                        </div>
                         <p class="project-description">
-                            Built a scalable Python-based web scraping system for automated large-scale data collection and trend analysis. Engineered robust extraction pipelines using BeautifulSoup and Selenium, implementing intelligent retry mechanisms, rate limiting, and data validation to ensure data quality and reliability for downstream analytics.
+                            Built an automated data collection pipeline scraping structured data from multiple web sources using BeautifulSoup and Selenium. Implemented retry mechanisms, rate limiting, and data validation for reliability. Cleaned and transformed raw data into structured datasets for trend analysis and visualization.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -1134,7 +1249,7 @@
                             <span class="tech-tag">Data Engineering</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sarmaharan" class="project-link project-link-primary">View on GitHub</a>
+                            <a href="https://github.com/Sarmaharan/Webscraping" target="_blank" class="project-link project-link-primary">View on GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -1161,10 +1276,10 @@
                         </div>
                         <div class="timeline-description">
                             <ul>
-                                <li>Provide comprehensive technical support for hardware and software troubleshooting across university computing facilities</li>
-                                <li>Monitor lab operations and enforce institutional guidelines to maintain secure and productive learning environments</li>
-                                <li>Mentor students in programming concepts, software development tools, and best practices</li>
-                                <li>Manage equipment inventory, scheduling systems, and technical documentation</li>
+                                <li>Provide technical support to 60+ students per week, resolving hardware/software issues across Python, C++, and Java environments</li>
+                                <li>Mentor students on debugging, data structures, and software best practices — contributing to improved lab session productivity</li>
+                                <li>Manage scheduling, equipment inventory, and IT documentation for a 40+ workstation computing facility</li>
+                                <li>Enforce institutional IT policies and maintain system health through routine monitoring and maintenance</li>
                             </ul>
                         </div>
                     </div>
